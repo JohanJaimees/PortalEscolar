@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Aula</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #f8f9fa;
+            margin-bottom: 30px;
+        }
+        .card-header {
+            background-color: #2980B9;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .detail-value {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            background-color: #198754;
+            border-color: #198754;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #157347;
+            border-color: #157347;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title mb-0">Detalles del Aula</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="detail-label">Turno:</p>
+                        <p class="detail-value" th:text="${aula.turno == '6649626216de985644e2fdfd' ? 'Mañana' : (aula.turno == '6649626316de985644e2fdfe' ? 'Tarde' : aula.turno)}"></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="detail-label">Nivel:</p>
+                        <p class="detail-value" th:text="${aula.nivel.nombre}"></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="detail-label">Grado:</p>
+                        <p class="detail-value" th:text="${aula.gradoAula != null ? aula.gradoAula.nombre : 'No especificado'}"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="detail-label">Nombre del Aula:</p>
+                        <p class="detail-value" th:text="${aula.nombre}"></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="detail-label">Sección:</p>
+                        <p class="detail-value" th:text="${aula.seccion}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección de Clases -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title mb-0">Clases del Aula</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre de la Clase</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="clase : ${clases}">
+                            <td th:text="${clase.nombre}">Nombre de la Clase</td>
+    
+                        </tr>
+                    </tbody>
+                </table>
+ 
+				
+				
+				<a th:href="@{/clases/crear(aulaId=${aula.id})}"class="btn btn-primary">Crear Clase</a>
+
+				
+
+
+            </div>
+        </div>
+        
+        <!-- Sección de Estudiantes -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title mb-0">Estudiantes del Aula</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Estudiante</th>
+                       
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="estudiante : ${estudiantes}">
+                            <td th:text="${estudiante.nombre}">Nombre del Estudiante</td>
+     
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <a th:href="@{/aulas}" class="btn btn-primary">Volver a la Lista de Aulas</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

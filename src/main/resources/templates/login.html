@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <!-- Tus enlaces a estilos y fuentes -->
+    <!-- Estilos internos -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fd; /* Color de fondo */
+            margin: 0;
+			background-image: url('			https://img.freepik.com/foto-gratis/elementos-dia-educacion-espacio-copia_23-2148721219.jpg?t=st=1716421793~exp=1716425393~hmac=903c1557f98cad7eee04fb2036bb43d77de44f9ea6497d22e7d2178d72cbf136&w=1380');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		.form_main {
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		  justify-content: center;
+		  background-color: rgb(255, 255, 255);
+		  padding: 65px 90px 90px 90px;
+		  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.062);
+		  position: relative;
+		  overflow: hidden;
+		}
+		
+		.form_main::before {
+		  position: absolute;
+		  content: "";
+		  width: 300px;
+		  height: 300px;
+		  background-color:		  #004fa9;
+		  transform: rotate(45deg);
+		  left: -180px;
+		  z-index: 1;
+		  border-radius: 30px;
+		  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.082);
+		}
+		
+		.heading {
+		  font-size: 2em;
+		  color: #2e2e2e;
+		  font-weight: 700;
+		  margin: 5px 0 10px 0;
+		  z-index: 2;
+		}
+		
+		.inputContainer {
+		  width: 100%;
+		  position: relative;
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  z-index: 2;
+		}
+		
+		.inputIcon {
+		  position: absolute;
+		  left: 3px;
+		}
+		
+		.inputField {
+		  width: 100%;
+		  height: 50px;
+		  background-color: transparent;
+		  border: none;
+		  border-bottom: 2px solid rgb(173, 173, 173);
+		  margin: 3px 0;
+		  color: black;
+		  
+		  font-weight: 500;
+		  
+		  padding-left: 50px;
+		}
+		
+		.inputField:focus {
+		  outline: none;
+		  border-bottom: 2px solid  		  #F0B203;
+		}
+		
+		.inputField::placeholder {
+		  color: rgb(80, 80, 80);
+		  font-size: 1em;
+		  font-weight: 500;
+		}
+		
+		#button {
+		  z-index: 2;
+		  position: relative;
+		  width: 100%;
+		  border: none;
+		  background-color: #004fa9;
+		  height: 30px;
+		  color: white;
+		  font-size: .8em;
+		  font-weight: 500;
+		  letter-spacing: 1px;
+		  margin: 20px;
+		  cursor: pointer;
+		}
+		
+		#button:hover {
+		  background-color:#004fa9;
+		}
+		
+		.forgotLink {
+		  z-index: 2;
+		  font-size: .7em;
+		  font-weight: 500;
+		  color: rgb(44, 24, 128);
+		  text-decoration: none;
+		  padding: 8px 15px;
+		  border-radius: 20px;
+		}
+		.form_image {
+		         width: 100px; /* Ajusta el tamaño del logo */
+		         height: auto;
+		         margin-bottom: 5px; /* Añade un margen inferior */
+		     }
+			 
+			 .backButton {
+			     display: inline-block;
+			     padding: 10px 20px;
+			     background-color:  				 #004fa9; /* Color de fondo */
+			     color: white;
+			     text-align: center;
+			     text-decoration: none;
+			     font-size: 16px;
+			     border: none;
+			     border-radius: 5px;
+			     cursor: pointer;
+			     transition: background-color 0.3s;
+			 }
+			 
+			 .backButton:hover {
+			     background-color:					#004fa9; /* Cambia el color de fondo al pasar el ratón por encima */
+			 }
+			 .labelField {
+			     font-weight: bold;
+			 }
+		
+    </style>
+</head>
+<body>
+    <form action="/auth/login" method="post" class="form_main">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Escudo-Colegio-Nacional-Pichincha.svg/988px-Escudo-Colegio-Nacional-Pichincha.svg.png" alt="Login Image" class="form_image">
+        <p class="heading">Login</p>
+
+        <div class="inputContainer">
+            <svg class="inputIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2e2e2e" viewBox="0 0 16 16">
+                <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"></path>
+            </svg>
+            <input type="text" class="inputField" id="username" name="username" placeholder="Username" required>
+        </div>
+        
+        <div class="inputContainer">
+            <svg class="inputIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2e2e2e" viewBox="0 0 16 16">
+                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
+            </svg>
+            <input type="password" class="inputField" id="password" name="password" placeholder="Password" required>
+        </div>
+        
+        <button type="submit" id="button">Iniciar Sesion</button>
+		<a href="/" class="backButton">Volver al inicio</a>
+		
+    </form>
+    <div class="message" th:if="${param.error}">
+        <p class="error">Invalid username or password</p>
+    </div>
+    <div class="message" th:if="${param.logout}">
+        <p class="success">You have been logged out</p>
+    </div>
+</body>
+</html>
+

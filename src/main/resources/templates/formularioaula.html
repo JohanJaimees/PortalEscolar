@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario para Agregar Aula</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-custom {
+            background-color: #198754;
+            color: #fff;
+        }
+        .btn-custom:hover {
+            background-color: #155d40;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario para Agregar Aula</h1>
+        <form th:action="@{/aulas}" th:object="${aula}" method="post">
+            <div class="form-group">
+                <label for="turno">Turno:</label>
+                <select id="turno" name="turno" class="form-control" required>
+                    <option value="6649626216de985644e2fdfd">Mañana</option>
+                    <option value="6649626316de985644e2fdfe">Tarde</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nivel">Nivel:</label>
+                <select id="nivel" name="nivel.id" class="form-control" required>
+                    <option value="6649637316de985644e2fe01">Primaria</option>
+                    <option value="6649637416de985644e2fe02">Bachillerato</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="grado">Grado:</label>
+                <select id="grado" name="gradoAula.id" class="form-control" required>
+                    <option value="664b85011b971c519aea9f2a">Primero</option>
+                    <option value="664b851b1b971c519aea9f2d">Segundo</option>
+                    <option value="664b85231b971c519aea9f2e">Tercero</option>
+                    <option value="664b852b1b971c519aea9f2f">Cuarto</option>
+                    <option value="664b85321b971c519aea9f30">Quinto</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" th:field="*{nombre}" required>
+            </div>
+            <div class="form-group">
+                <label for="seccion">Sección:</label>
+                <input type="text" id="seccion" name="seccion" class="form-control" th:field="*{seccion}" required>
+            </div>
+            <div class="form-group">
+                <label for="capacidad">Capacidad:</label>
+                <input type="number" id="capacidad" name="capacidad" class="form-control" th:field="*{capacidad}" required>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-custom">Guardar Aula</button>
+                <button type="button" class="btn btn-secondary" onclick="history.back()">Volver Atrás</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+

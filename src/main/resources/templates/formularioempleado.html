@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Empleado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
+</head>
+<style>
+    /* Estilos generales */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        padding: 20px;
+        display: flex;
+        justify-content: center; /* Centrar horizontalmente */
+        align-items: center; /* Centrar verticalmente */
+        height: 100vh; /* Altura de la ventana gráfica */
+        margin: 0; /* Eliminar márgenes predeterminados */
+        overflow: hidden; /* Ocultar desbordamiento */
+    }
+
+    .container {
+        width: 90%; /* Ajustar ancho del contenedor */
+        max-width: 500px; /* Máximo ancho del contenedor */
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        overflow-y: auto; /* Hacer el contenedor desplazable verticalmente */
+        max-height: 90vh; /* Máxima altura del contenedor */
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 10px; /* Reducir margen inferior */
+        color: #333;
+        word-break: break-word; /* Evitar que el título se corte */
+    }
+
+    /* Estilos para los campos de entrada */
+    label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    input[type="text"],
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Estilos para los botones */
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%; /* Ajustar ancho del botón */
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    /* Estilos para los enlaces */
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #4CAF50;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px;
+        border: 1px solid #4CAF50;
+        border-radius: 4px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        background-color: #f7f7f7;
+    }
+
+    /* Estilos para las especialidades */
+    .especialidades {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px; /* Añadir margen superior */
+        margin-bottom: 20px; /* Añadir margen inferior */
+    }
+
+    .especialidades .checkbox-item {
+        flex: 1 1 calc(50% - 10px); /* Ajusta el tamaño de los elementos a 50% */
+        display: flex;
+        align-items: center;
+    }
+
+    .especialidades input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    .especialidades label {
+        margin: 0;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>Formulario de Empleado</h1>
+			<form th:action="@{${empleado.id != null} ? '/empleados/editar/' + ${empleado.id} : '/empleados'}" th:object="${empleado}" method="post">
+            <div>
+                <label for="nombres">Nombres:</label>
+                <input type="text" id="nombres" th:field="*{nombres}" />
+            </div>
+            <div>
+                <label for="apellidoPaterno">Apellido Paterno:</label>
+                <input type="text" id="apellidoPaterno" th:field="*{apellidoPaterno}" />
+            </div>
+            <div>
+                <label for="apellidoMaterno">Apellido Materno:</label>
+                <input type="text" id="apellidoMaterno" th:field="*{apellidoMaterno}" />
+            </div>
+            <div>
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" th:field="*{dni}" />
+            </div>
+            <div>
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="text" id="fechaNacimiento" class="datepicker" th:field="*{fechaNacimiento}" />
+            </div>
+            <div>
+                <label for="nroCelular">Número de Celular:</label>
+                <input type="text" id="nroCelular" th:field="*{celular}" />
+            </div>
+            <div>
+                <label for="domicilio">Domicilio:</label>
+                <input type="text" id="domicilio" th:field="*{domicilio}" />
+            </div>
+            <div>
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" th:field="*{sexo}">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+            </div>
+            <div>
+                <label for="especialidades">Especialidades:</label>
+                <div class="especialidades">
+					
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="especialidad1" th:field="*{especialidades}" value="66495fc6d20ffc1e675a5da0">
+                        <label for="especialidad1">Profesor de Español</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="especialidad2" th:field="*{especialidades}" value="						66495fc6d20ffc1e675a5da1">
+                        <label for="especialidad2">Profesor de Matemáticas</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="especialidad3" th:field="*{especialidades}" value="						66495fc7d20ffc1e675a5da2">
+                        <label for="especialidad3">Profesor de Inglés</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="especialidad4" th:field="*{especialidades}" value="						66495fc7d20ffc1e675a5da3">
+                        <label for="especialidad4">Profesor de Sociales</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="especialidad5" th:field="*{especialidades}" value="						66495fc7d20ffc1e675a5da4">
+                        <label for="especialidad5">Profesor de Naturales</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="especialidad6" th:field="*{especialidades}" value="						66495fc7d20ffc1e675a5da5">
+                        <label for="especialidad6">Profesor de Edu. Física</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="especialidad7" th:field="*{especialidades}" value="						66495fc7d20ffc1e675a5da6">
+                        <label for="especialidad7">Profesor de Informática</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="especialidad8" th:field="*{especialidades}" value="						66495fc7d20ffc1e675a5da7">
+                        <label for="especialidad8">Profesor de Artística</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="especialidad9" th:field="*{especialidades}" value="						66495fc8d20ffc1e675a5da8">
+                        <label for="especialidad9">Profesor de Religión</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="especialidad10" th:field="*{especialidades}" value="						66495fc8d20ffc1e675a5da9">
+                        <label for="especialidad10">Profesor de Ética</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="submit">Guardar</button>
+            </div>
+        </form>
+        <a th:href="@{/empleados}">Volver a la lista</a>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.datepicker').datepicker({
+                language: 'es',
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+</body>
+</html>
+
+

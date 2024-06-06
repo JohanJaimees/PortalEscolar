@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Materias</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+	       /* Estilos personalizados para la barra de navegación lateral */
+	       .sidenav {
+	           height: 100%;
+	           width: 250px;
+	           position: fixed;
+	           top: 0;
+	           left: 0;
+	           background-color: #343a40; /* Cambia el color de fondo según tus preferencias */
+	           padding-top: 20px;
+	           border-right: 1px solid #dee2e6;
+	           overflow-x: hidden;
+	           z-index: 1; /* Asegura que la barra de navegación esté por encima del contenido */
+	       }
+	
+	       .sidenav h1 {
+	           color: #ffffff; /* Color del título */
+	           font-size: 24px;
+	           text-align: center;
+	           margin-bottom: 30px; /* Espacio entre el título y los enlaces */
+	           text-transform: uppercase; /* Convertir el texto a mayúsculas */
+	           letter-spacing: 2px; /* Espaciado entre las letras */
+	           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente del título */
+	       }
+	
+	       .sidenav a {
+	           padding: 10px 15px;
+	           text-decoration: none;
+	           font-size: 18px;
+	           color: #ffffff; /* Cambia el color de los enlaces según tus preferencias */
+	           display: block;
+	       }
+	
+	       .sidenav a:hover {
+	           background-color: #4a4e52; /* Cambia el color de fondo al pasar el ratón sobre los enlaces */
+	       }
+	
+	       /* Estilos para el contenido */
+	       .content {
+	           margin-left: 250px; /* Ajusta el margen izquierdo para dejar espacio para la barra de navegación */
+	           padding: 20px;
+	       }
+	
+	       /* Estilos para la tabla de grados */
+	       .table-custom {
+	           border-collapse: separate;
+	           border-spacing: 0;
+	           width: 100%;
+	           border-radius: 10px;
+	           overflow: hidden;
+	           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	       }
+	
+	       .table-custom thead th {
+	           background-color: #007bff; /* Color de fondo del encabezado */
+	           color: #ffffff; /* Color del texto del encabezado */
+	           font-weight: bold;
+	           text-align: center;
+	           vertical-align: middle;
+	           border: none;
+	       }
+	
+	       .table-custom tbody tr {
+	           background-color: #f8f9fa; /* Color de fondo de las filas */
+	       }
+	
+	       .table-custom tbody tr:hover {
+	           background-color: #e9ecef; /* Color de fondo al pasar el ratón sobre las filas */
+	       }
+	
+	       .table-custom td {
+	           text-align: center;
+	           vertical-align: middle;
+	           border: none;
+	       }
+	   </style>
+	/head>
+	body>
+	   <div class="sidenav">
+	       <h1>Portal Escolar (estudiante)</h1>
+	       <a href="#">Dashboard</a>
+	       <a href="#">Estudiantes</a>
+	       <a href="#">Empleados</a>
+	       <a href="#">Aulas</a>
+	       <a href="#">Materias</a>
+	       <a href="#">Grados</a>
+	       <!-- Agrega más enlaces según sea necesario -->
+	   </div>
+    <div class="container">
+        <h1>Lista de Materias</h1>
+        <a th:href="@{/cursos/nuevo}" class="btn btn-primary mb-3">Crear Nueva Materia</a>
+		<table class="table table-custom">
+            <thead>
+                <tr>
+                   
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="curso : ${cursos}">
+                   
+                    <td th:text="${curso.nombre}"></td>
+                    <td>
+                        <a th:href="@{|/cursos/editar/${curso.id}|}" class="btn btn-warning">Editar</a>
+                        <a th:href="@{|/cursos/eliminar/${curso.id}|}" class="btn btn-danger" th:onclick="return confirm('¿Seguro que deseas eliminar este curso?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+

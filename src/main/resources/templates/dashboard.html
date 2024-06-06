@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    /* Estilos CSS */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+    }
+    .card {
+      background-color: #f5f5f5;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Empleados</h1>
+      <p>Número de empleados: <span th:text="${numEmpleados}">Cargando...</span></p>
+    </div>
+
+    <div class="card">
+      <h1>Estudiantes</h1>
+      <p>Número de estudiantes: <span th:text="${numEstudiantes}">Cargando...</span></p>
+    </div>
+
+    <div class="card">
+      <h1>Cursos</h1>
+      <p>Número de cursos: <span th:text="${numCursos}">Cargando...</span></p>
+    </div>
+
+    <div class="card">
+      <h1>Aulas</h1>
+      <p>Número de aulas: <span th:text="${numAulas}">Cargando...</span></p>
+    </div>
+
+    <div class="card">
+      <h1>Grados</h1>
+      <p>Número de grados: <span th:text="${numGrados}">Cargando...</span></p>
+    </div>
+  </div>
+</body>
+</html>
+

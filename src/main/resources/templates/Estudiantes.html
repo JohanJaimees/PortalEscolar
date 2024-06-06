@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Estudiantes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+n/RVTSIrwq8C6DkITtDI1Qbq4m7O3GS8CKXS" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Color de fondo general */
+            font-family: Arial, sans-serif; /* Fuente principal */
+        }
+
+        .container-fluid {
+            padding-top: 20px; /* Espacio superior */
+            padding-bottom: 20px; /* Espacio inferior */
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40; /* Color de fondo de la barra lateral */
+            padding-top: 20px;
+            border-right: 1px solid #dee2e6;
+            overflow-x: hidden;
+            z-index: 1;
+        }
+
+        .sidenav h1 {
+            color: #ffffff; /* Color del título */
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px; /* Espacio entre el título y los enlaces */
+            text-transform: uppercase; /* Convertir el texto a mayúsculas */
+            letter-spacing: 2px; /* Espaciado entre las letras */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente del título */
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #ffffff; /* Color de los enlaces */
+            display: block;
+        }
+
+        .sidenav a:hover {
+            background-color: #4a4e52; /* Color de fondo al pasar el ratón sobre los enlaces */
+        }
+
+        .main-content {
+            margin-left: 270px; /* Ancho de la barra lateral más un pequeño margen */
+            padding: 20px;
+            background-color: #ffffff; /* Color de fondo del contenido principal */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        .main-content h1 {
+            color: #343a40; /* Color del título */
+            text-align: center;
+            margin-bottom: 20px; /* Espacio inferior */
+        }
+
+        .table {
+            width: 100%;
+            background-color: #ffffff; /* Color de fondo de la tabla */
+        }
+
+        .table th {
+            background-color: #f2f2f2; /* Color de fondo de las celdas de encabezado */
+            text-align: center;
+            padding: 10px 0; /* Espaciado interior */
+        }
+
+        .table td {
+            text-align: center;
+            padding: 10px 0; /* Espaciado interior */
+        }
+
+        .btn-editar {
+            background-color: #ffc107; /* Amarillo */
+            color: #ffffff; /* Color del texto */
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-editar:hover {
+            background-color: #e0a800; /* Amarillo más oscuro al pasar el ratón */
+        }
+
+        .btn-eliminar {
+            background-color: #dc3545; /* Rojo */
+            color: #ffffff; /* Color del texto */
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-eliminar:hover {
+            background-color: #c82333; /* Rojo más oscuro al pasar el ratón */
+        }
+
+        .btn-agregar {
+            background-color: #198754; /* Verde */
+            color: #ffffff; /* Color del texto */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-agregar:hover {
+            background-color: #157347; /* Verde más oscuro al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <div class="sidenav">
+        <h1>Portal Escolar</h1>
+        <a href="#">Dashboard</a>
+        <a href="Estudiantes">Estudiantes</a>
+        <a href="empleados">Empleados</a>
+        <a href="aulas">Aulas</a>
+        <a href="cursos">Materias</a>
+        <a href="grados">Grados</a>
+    </div>
+    <div class="container-fluid main-content">
+        <h1>Lista de Estudiantes</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>DNI</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="student-table-body">
+                <!-- Aquí se agregarán dinámicamente los estudiantes -->
+            </tbody>
+        </table>
+        <a href="/estudiantes/formularioEstudiante" class="btn btn-agregar">Agregar Estudiante</a> <!-- Botón Agregar Estudiante actualizado -->
+    </div>
+
+    <!-- JavaScript para obtener y mostrar los estudiantes -->
+    <script>
+        // Obtener datos de los estudiantes desde la API
+        fetch('/api/estudiantes')
+            .then(response => response.json())
+            .then(data => {
+                // Recorrer cada estudiante y crear filas de tabla
+                data.forEach(student => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${student.nombres}</td>
+                        <td>${student.apellidoPaterno}</td>
+                        <td>${student.apellidoMaterno}</td>
+                        <td>${student.dni}</td>
+                        <td>${student.fechaNacimiento}</td>
+                        <td class="action-buttons">
+                            <button class="btn btn-editar" onclick="editarEstudiante('${student.id}')">Editar</button>
+                            <button class="btn btn-eliminar" onclick="eliminarEstudiante('${student.id}')">Eliminar</button>
+                        </td>
+                    `;
+                    document.getElementById('student-table-body').appendChild(tr);
+                });
+            })
+            .catch(error => console.error('Error al obtener estudiantes:', error));
+
+        // Función para eliminar un estudiante
+        function eliminarEstudiante(idEstudiante) {
+            fetch(`/api/estudiantes/${idEstudiante}`, { method: 'DELETE' })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Estudiante eliminado correctamente');
+                        // Eliminar el estudiante eliminado de la tabla
+                        document.getElementById(idEstudiante).remove();
+                    } else {
+                        throw new Error('Error al eliminar estudiante');
+                    }
+                })
+                .catch(error => console.error('Error al eliminar estudiante:', error));
+        }
+
+        // Función para editar un estudiante (puedes redirigir a una página de edición o mostrar un modal)
+        function editarEstudiante(idEstudiante) {
+            alert(`Editando estudiante con ID: ${idEstudiante}`);
+            // Implementa aquí tu lógica de edición
+        }
+
+        // Función para agregar un nuevo estudiante
+        function agregarEstudiante() {
+            window.location.href = '/estudiantes/formularioEstudiante';
+        }
+    </script>
+</body>
+</html>
