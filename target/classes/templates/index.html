@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Escolar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+	header {
+	    display: flex;
+	    align-items: center;
+	    justify-content: space-between;
+	    padding: 4px;
+	    background-color: #002b5c;
+	    color: white;
+	}
+	
+	.logo-container {
+	    display: flex;
+	    align-items: center;
+	}
+	
+	.logo-container img {
+	    max-width: 100px;
+	    margin-right: 10px;
+	}
+	
+	.logo-container h1 {
+	    margin: 0;
+	}
+	
+	nav ul {
+	    list-style: none;
+	    margin: 0;
+	    padding: 0;
+	    display: flex;
+	}
+	
+	nav ul li {
+	    margin-right: 20px;
+	}
+	
+	nav ul li:last-child {
+	    margin-right: 0;
+	}
+	
+	nav ul li a {
+	    color: white;
+	    text-decoration: none;
+	}
+	
+	nav ul li a:hover {
+	    text-decoration: underline;
+	}
+
+    .hero {
+        text-align: center;
+        
+        background-color: #f8f9fa;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+        color: #003366;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .cards {
+        display: flex;
+        justify-content: space-around;
+      
+        padding: 20px;
+    }
+
+    .card {
+        background-color:		whitesmoke;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 		#003366;
+        margin: 20px;
+        padding: 20px;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    .card img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .card h2 {
+        color: #003366;
+        font-size: 1.5em;
+    }
+
+    .card p {
+        color: #555;
+        font-size: 1em;
+        margin: 10px 0;
+    }
+
+    .card a {
+        color: #ff9900;
+        text-decoration: none;
+        font-weight: bold;
+    }
+	
+	.gallery {
+	    display: grid;
+	    grid-template-columns: repeat(2, 1fr);
+	    gap: 10px;
+	    max-width: 999px;
+	    margin: auto;
+	}
+	
+	.gallery {
+	    display: grid;
+	    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	    gap: 10px;
+	    width: 100%;
+	    padding: 25px;
+	  
+	}
+	
+	.gallery-item {
+	    position: relative;
+	    overflow: hidden;
+	}
+	
+	.gallery-item img {
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+	    display: block;
+	    transition: transform 0.3s ease;
+	}
+	
+	.gallery-item:hover img {
+	    transform: scale(1.1);
+	}
+	
+	
+	.info-section {
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    background-color:		#003366; /* Color de fondo rosado */
+	    padding: 20px 40px;
+	 
+	    border-radius: 8px;
+	}
+	
+	.info-content h2 {
+	    margin: 0;
+	    color: white;
+	    font-size: 1.8em;
+	    font-weight: bold;
+	}
+	
+	.info-content p {
+	    margin: 5px 0 0;
+	    color: white;
+	    font-size: 1.2em;
+	}
+	
+	.info-button button {
+	    background-color: 		#F0B203; 
+	    color: white;
+	    border: none;
+	    padding: 10px 20px;
+	    font-size: 1.2em;
+	    font-weight: bold;
+	    border-radius: 5px;
+	    cursor: pointer;
+	    transition: background-color 0.3s ease;
+	}
+	
+	.info-button button:hover {
+	    background-color: #0056b3; /* Color del botón al pasar el cursor */
+	}
+	
+	       .carousel-fixed-height {
+	           height: 400px; /* Altura fija del carrusel */
+	           overflow: hidden; /* Para mantener las imágenes dentro del límite */
+	       }
+	
+	       .carousel-img {
+	           object-fit: cover; /* Ajusta la imagen al contenedor sin distorsión */
+	           height: 100%; /* Asegura que las imágenes llenen el espacio vertical */
+	           width: 100%; /* Asegura que las imágenes llenen el espacio horizontal */
+	       }
+	
+	       .carousel-caption-custom {
+	           position: absolute; /* Hace que el texto esté sobre la imagen */
+	           bottom: 10%; /* Posición respecto al fondo */
+	           left: 10%; /* Posición respecto al lado izquierdo */
+	           color: white; /* Asegura que el texto sea visible sobre la imagen */
+	          
+	           padding: 10px; /* Espaciado alrededor del texto */
+	           border-radius: 5px; /* Bordes redondeados */
+	       }
+		   h1 {
+		       text-align: center; /* Centra el texto */
+		       margin-top: 20px; /* Añade espacio encima del título */
+		       font-size: 48px; /* Tamaño de la fuente */
+		   }
+		   
+		   .container {
+		       display: flex;
+		       justify-content: space-between;
+		       padding: 20px;
+		       flex-wrap: wrap;                 
+		       background-color: #002b5c;
+		   }
+		   .left, .right {
+		       flex: 1;
+		       margin: 10px;
+		   }
+		   .right {
+		       background-color: #F0B203;
+		       padding: 20px;
+		       border-radius: 10px;
+		       display: flex;
+		       flex-direction: column;
+		       align-items: center;
+		       max-width: 400px;
+		   }
+		   .logo {
+		       display: flex;
+		       align-items: center;
+		       margin-bottom: 20px;
+		   }
+		   .logo img {
+		       margin-right: 10px;
+		       max-width: 140px;
+		   }
+		   .info {
+		       margin-left: 20px;
+		       color: white;
+		   }
+		   .footer {
+		       display: flex;
+		       padding: 5px;
+		       background-color: #002b5c;
+		       color: white;
+		       flex-wrap: wrap;
+		       width: 60%;
+		
+		       position: relative;
+		    
+		       gap: 100px;
+		   }
+		   .footer div {
+		       flex: 1;
+		       margin: 10px;
+		       min-width: 200px;
+		   }
+		   .footer a {
+		       color: white;
+		       text-decoration: none;
+		       display: block;
+		       margin-bottom: 5px;
+		   }
+		   .footer a:hover {
+		       text-decoration: underline;
+		   }
+		   .subscribe input[type="email"] {
+		       padding: 10px;
+		       border: none;
+		       border-radius: 5px;
+		       width: 60%;
+		       margin-right: 10px;
+		       font-size: 16px;
+		   }
+		   .subscribe button {
+		       padding: 10px 20px;
+		       border: none;
+		       border-radius: 5px;
+		       background-color: #002b5c;
+		       color: white;
+		       font-weight: bold;
+		       cursor: pointer;
+		       font-size: 16px;
+		   }
+		   .subscribe button:hover {
+		       background-color: #001f47;
+		   }
+		   .subscribe label {
+		       margin-top: 10px;
+		       display: flex;
+		       align-items: center;
+		       font-size: 14px;
+		   }
+		   .subscribe input[type="checkbox"] {
+		       margin-right: 10px;
+		   }
+		   h2, h3, h4 {
+		       font-weight: 700;
+		   }
+
+		   
+		   
+</style>
+<body>
+	<header>
+	    <div class="logo-container">
+	        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Escudo-Colegio-Nacional-Pichincha.svg/988px-Escudo-Colegio-Nacional-Pichincha.svg.png" alt="Logo 1">
+	        <h2>Portal Escolar</h2>
+	    </div>
+	    <nav>
+	        <ul>
+	            <li><a href="#">Académico</a></li>
+	            <li><a href="#">Admisiones</a></li>
+	            <li><a href="#">Vida Escolar</a></li>
+	            <li><a href="#">Pago en Línea</a></li>
+	            <li><a href="/auth/login">Login</a></li>
+	        </ul>
+	    </nav>
+	</header>
+    <main>
+		
+		<div id="imageCarousel" class="carousel slide carousel-fixed-height w-100" data-ride="carousel">
+		   
+		    <!-- Carousel Items -->
+		    <div class="carousel-inner">
+		        <!-- First item -->
+		        <div class="carousel-item active">
+		            <img src="					https://scontent.fctg1-3.fna.fbcdn.net/v/t39.30808-6/378388537_730603555745137_3800848447255720931_n.jpg?stp=dst-jpg_p180x540&_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=3iFlW7NH-pQQ7kNvgHws-ur&_nc_ht=scontent.fctg1-3.fna&oh=00_AYALfC3YVAMxgDYcqbbCryQFx7twdMQlUB6yGqdJpa4g1Q&oe=6667B898" class="d-block w-100 carousel-img" alt="Imagen 1">
+		            <div class="carousel-caption-custom">
+		                
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		
+		
+        <section class="hero">
+            <h1>Siempre Contigo</h1>
+            <p>Para nosotros es importante acompañarte en todo momento.</p>
+        </section>
+        <section class="cards">
+            <div class="card">
+                <img src="https://lasallebga.edu.co/website/wp-content/uploads/2022/08/web-2022-2-05-1.png" alt="Menú Semanal">
+                <h2>Menú Semanal</h2>
+                <p>Para nosotros es importante la sana alimentación y el autocuidado de nuestros estudiantes.</p>
+                <a href="#">Ver menú</a>
+            </div>
+            <div class="card">
+                <img src="https://lasallebga.edu.co/website/wp-content/uploads/2022/08/web-2022-2-08-2.png" alt="Atención a padres">
+                <h2>Atención a padres</h2>
+                <p>Trabajamos con un equipo de profesionales encargados del proceso de adaptación en la institución.</p>
+                <a href="#">Horario de atención</a>
+            </div>
+            <div class="card">
+                <img src="https://lasallebga.edu.co/website/wp-content/uploads/2022/08/web-2022-2-08-3.png" alt="Admisiones">
+                <h2>Admisiones</h2>
+                <p>Nos encantaría invitarte al proceso de admisión en la que puedes conocernos y ser parte de nuestro Colegio.</p>
+                <a href="#">Agendar visita</a>
+            </div>
+            <div class="card">
+                <img src="https://lasallebga.edu.co/website/wp-content/uploads/2022/08/web-2022-2-07.png" alt="Pago de pensión">
+                <h2>Pago de pensión</h2>
+                <p>Para nosotros es importante que realices tus procesos desde casa, por eso habilitamos pagos en línea.</p>
+                <a href="#">Pagar</a>
+            </div>
+        </section>
+		
+		<section class="info-section">
+		      <div class="info-content">
+		          <h2>¿DESEA RECIBIR MÁS INFORMACIÓN?</h2>
+		          <p>Solicita una cita por videoconferencia o reserva un cita presencial</p>
+		      </div>
+		      <div class="info-button">
+		          <button>RESERVAR CITA</button>
+		      </div>
+		  </section>
+		
+		  <h1>Galería</h1>
+		<section class="gallery">
+		       <div class="gallery-item">
+		           <img src="https://media.istockphoto.com/id/1463500424/es/foto/compa%C3%B1eros-de-clase-sonrientes-corriendo-en-el-pasillo-de-la-escuela.jpg?s=612x612&w=0&k=20&c=w6BOhtTXeU8hYMOai5qZl4oZCc0vBUZiDmL6dZ371lw=" alt="Foto 1">
+		       </div>
+		       <div class="gallery-item">
+		           <img src="https://media.istockphoto.com/id/1479317212/es/foto/ni%C3%B1a-dibujando-nuestro-hermoso-planeta-tierra-ni%C3%B1o-muy-talentoso-divirti%C3%A9ndose-en-casa.jpg?s=2048x2048&w=is&k=20&c=ZsiZ8N_0LtknFfmrFvwLUy7XH-2yODs3BBP226WmsuM=" alt="Foto 2">
+		       </div>
+		       <div class="gallery-item">
+		           <img src="https://media.istockphoto.com/id/1676220225/es/foto/ni%C3%B1os-aprendiendo-en-un-aula-escolar.jpg?s=612x612&w=0&k=20&c=e0PQuAJSZAJsepod2fO18VwM3Uq9_9V4GoTujToNzsk=" alt="Foto 3">
+		       </div>
+		       <div class="gallery-item">
+		           <img src="https://scontent.fctg1-3.fna.fbcdn.net/v/t39.30808-6/438729401_18263815138239796_1022487159049484025_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=M2dXEltup7AQ7kNvgEU3lY1&_nc_ht=scontent.fctg1-3.fna&oh=00_AYARP6JeNH5VoVfWFmsW0335tMhlIJ5VPPNdnubmYLaeOw&oe=6667A625" alt="Foto 4">
+		       </div>
+			   <div class="gallery-item">
+			        <img src="https://media.istockphoto.com/id/1456749194/es/foto/estudiantes-universitarios-que-llegan-a-la-escuela-nocturna.jpg?s=2048x2048&w=is&k=20&c=LujKEm8z6G61Nq5PWTyyPchGXBv6VKGxZDWwZG4aDwY=" alt="Foto 5">
+			   </div>
+			   <div class="gallery-item">
+			        <img src="https://media.istockphoto.com/id/2153941908/es/foto/group-of-student-learn-with-teacher-in-classroom-at-elementary-school-attractive-beautiful.jpg?s=2048x2048&w=is&k=20&c=26vni65MOzPotK-sYs3ZbMfLO6dVjaTYye2jR9ur2EM=" alt="Foto 6">
+			   </div>
+			   <div class="gallery-item">
+			   	        <img src="				https://media.istockphoto.com/id/1409981225/es/foto/encantadora-maestra-de-preescolar-dando-amor-a-sus-estudiantes.jpg?s=612x612&w=0&k=20&c=9mukOYrFMoSzs96_jTrcfI6yQM2P-6duM3jT5AQgK9g=" alt="Foto 5">
+			   	   </div>
+			   	   <div class="gallery-item">
+			   	        <img src="					https://media.istockphoto.com/id/1409722748/es/foto/estudiantes-levantando-la-mano-mientras-el-maestro-les-hace-preguntas-en-el-aula.jpg?s=2048x2048&w=is&k=20&c=L7swqgTjBfwHl5dpitXB8IElweZtdE0cHSAASuRR_pc=" alt="Foto 6">
+			   	   </div>
+			          
+		   </section>
+		
+		   <div class="container">
+		       <div class="left">
+		           <div class="logo">
+		               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Escudo-Colegio-Nacional-Pichincha.svg/988px-Escudo-Colegio-Nacional-Pichincha.svg.png" alt="New Cambridge School">
+		               <div class="info">
+		                   <h2>Portal Escolar</h2>
+		                   <p><i class="fas fa-phone-alt"></i> PBX: (+57) 7-638-6152</p>
+		                   <p><i class="fas fa-envelope"></i> Email: auxadmisiones@colegio.edu.co</p>
+		                   <p><i class="fas fa-map-marker-alt"></i> Sede Cañaveral Calle 32 N°22-140 Floridablanca, Sder. / Sede Cabecera Cra. 39 N°44-72, Bga. Sder. / PreU Campus: Anillo vial, km 3 vía Girón-Floridablanca.</p>
+		               </div>
+		           </div>
+		       </div>
+		       <div class="right">
+		           <h3>Suscríbete a nuestro Blog</h3>
+		           <p>Recibirás periódicamente notas de interés para acompañar el proceso de formación de tus hijos.</p>
+		           <div class="subscribe">
+		               <input type="email" placeholder="Ingresa tu electrónico">
+		               <button>Enviar</button>
+		               <label>
+		                   <input type="checkbox"> Acepto las <a href="#">políticas de privacidad</a>
+		               </label>
+		           </div>
+		       </div>
+		       <div class="footer">
+		           <div>
+		               <h4>Nosotros</h4>
+		               <a href="#">Filosofía</a>
+		               <a href="#">Admisiones</a>
+		           </div>
+		           <div>
+		               <h4>Seguimiento Personalizado</h4>
+		               <a href="#">Vida escolar</a>
+		               <a href="#">Niveles Académicos</a>
+		           </div>
+		           <div>
+		               <h4>Contáctenos</h4>
+		               <a href="#">Mapa de sitio</a>
+		               <a href="#">Preguntas frecuentes</a>
+		               <a href="#">Directorio</a>
+		           </div>
+		       </div>
+		   </div>
+    </main>
+
+</body>
+</html>

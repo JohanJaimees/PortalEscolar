@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario para Agregar clase</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<head>
+   <title>Crear Clase</title>
+   <!-- Bootstrap CSS -->
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <style>
+       body {
+           background-color: #f8f9fa;
+       }
+       .container {
+           background: white;
+           padding: 30px;
+           border-radius: 10px;
+           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+       }
+       h2 {
+           color: #343a40;
+       }
+       .form-group label {
+           font-weight: bold;
+       }
+       .btn-primary {
+           background-color: #007bff;
+           border-color: #007bff;
+       }
+       .btn-primary:hover {
+           background-color: #0056b3;
+           border-color: #0056b3;
+       }
+       .btn-secondary {
+           background-color: #6c757d;
+           border-color: #6c757d;
+       }
+       .btn-secondary:hover {
+           background-color: #5a6268;
+           border-color: #545b62;
+       }
+       .invalid-feedback {
+           display: block;
+       }
+       .button-group {
+           display: flex;
+           justify-content: space-between;
+       }
+   </style>
+</head>
+<body>
+   <div class="container mt-5">
+       <h2 class="mb-4">Crear Clase</h2>
+  
+	   
+		<form action="/clases/guardar" method="post" class="needs-validation" novalidate>
+						
+           <!-- Selector para curso -->
+           <div class="form-group">
+               <label for="curso">Curso:</label>
+               <select id="curso" name="cursoId" class="form-control" required>
+                   <option th:each="curso : ${cursos}" th:value="${curso.id}" th:text="${curso.nombre}"></option>
+               </select>
+               <div class="invalid-feedback">Por favor seleccione un curso.</div>
+           </div>
+           <!-- Selector para empleado -->
+           <div class="form-group">
+               <label for="empleado">Empleado:</label>
+               <select id="empleado" name="empleadoId" class="form-control" required>
+                   <option th:each="empleado : ${empleados}" th:value="${empleado.id}" th:text="${empleado.nombres}"></option>
+               </select>
+               <div class="invalid-feedback">Por favor seleccione un empleado.</div>
+           </div>
+           <!-- Selector para días de la semana -->
+           <div class="form-group">
+               <label for="diasemana">Día de la semana:</label>
+               <select name="diasSemana" class="form-control" id="diasemana" required>
+                   <option value="Lunes">Lunes</option>
+                   <option value="Martes">Martes</option>
+                   <option value="Miércoles">Miércoles</option>
+                   <option value="Jueves">Jueves</option>
+                   <option value="Viernes">Viernes</option>
+                   <!-- Agrega más opciones según sea necesario -->
+               </select>
+               <div class="invalid-feedback">Por favor seleccione un día de la semana.</div>
+           </div>
+           <!-- Selector para frecuencias -->
+           <div class="form-group">
+               <label for="frecuencias">Frecuencias:</label>
+               <select name="frecuencias" multiple class="form-control" id="frecuencias" required>
+                   <option value="07:00 a 08:00">07:00 a 08:00</option>
+                   <option value="08:00 a 09:00">08:00 a 09:00</option>
+                   <option value="09:00 a 10:00">09:00 a 10:00</option>
+                   <option value="10:00 a 11:00">10:00 a 11:00</option>
+                   <option value="11:00 a 12:00">11:00 a 12:00</option>
+                   <!-- Agrega más opciones según sea necesario -->
+               </select>
+               <div class="invalid-feedback">Por favor selecciona al menos una frecuencia.</div>
+           </div>
+           <!-- Campo oculto para aulaId -->
+           <input type="hidden" name="aulaId" value="${aulaId}" />
+           <div class="button-group">
+               <button type="button" class="btn btn-secondary" onclick="history.back()">Volver Atrás</button>
+               <button type="submit" class="btn btn-primary">Guardar</button>
+           </div>
+       </form>
+   </div>
+
+   <!-- Bootstrap JS and dependencies -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+   <!-- JavaScript for form validation -->
+   <script>
+       (function() {
+           'use strict';
+           window.addEventListener('load', function() {
+               var forms = document.getElementsByClassName('needs-validation');
+               Array.prototype.filter.call(forms, function(form) {
+                   form.addEventListener('submit', function(event) {
+                       if (form.checkValidity() === false) {
+                           event.preventDefault();
+                           event.stopPropagation();
+                       }
+                       form.classList.add('was-validated');
+                   }, false);
+               });
+           }, false);
+       })();
+   </script>
+</body>
+</html>

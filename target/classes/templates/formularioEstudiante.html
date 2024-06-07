@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Estudiante y Matrícula</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario de Estudiante y Matrícula</h1>
+        <form th:action="@{/api/matriculas/crear}" th:object="${matricula}" method="post">
+            <!-- Campos del Estudiante -->
+            <div class="form-group">
+                <label for="nombres">Nombres:</label>
+                <input type="text" id="nombres" name="nombres" class="form-control" th:field="*{estudiante.nombres}" required>
+            </div>
+            <div class="form-group">
+                <label for="apellidoPaterno">Apellido Paterno:</label>
+                <input type="text" id="apellidoPaterno" name="apellidoPaterno" class="form-control" th:field="*{estudiante.apellidoPaterno}" required>
+            </div>
+            <div class="form-group">
+                <label for="apellidoMaterno">Apellido Materno:</label>
+                <input type="text" id="apellidoMaterno" name="apellidoMaterno" class="form-control" th:field="*{estudiante.apellidoMaterno}" required>
+            </div>
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" name="dni" class="form-control" th:field="*{estudiante.dni}" required>
+            </div>
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" th:field="*{estudiante.fechaNacimiento}" required>
+            </div>
+            <div class="form-group">
+                <label for="celular">Número de Celular:</label>
+                <input type="text" id="celular" name="celular" class="form-control" th:field="*{estudiante.celular}" required>
+            </div>
+            <div class="form-group">
+                <label for="domicilio">Domicilio:</label>
+                <input type="text" id="domicilio" name="domicilio" class="form-control" th:field="*{estudiante.domicilio}" required>
+            </div>
+            <div class="form-group">
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" name="sexo" class="form-control" th:field="*{estudiante.sexo}" required>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+            </div>
+            <!-- Campos de la Matrícula -->
+            <div class="form-group">
+                <label for="nivel">Nivel:</label>
+                <select id="nivel" name="nivel" class="form-control" required>
+					<option value="6649637316de985644e2fe01">Primaria</option>
+		            <option value="6649637416de985644e2fe02">Bachillerato</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="turno">Turno:</label>
+                <select id="turno" name="turno" class="form-control" required>
+                    <option value="6649626216de985644e2fdfd">Mañana</option>
+                    <option value="6649626316de985644e2fdfe">Tarde</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="grado">Grado:</label>
+                <select id="grado" name="grado" class="form-control" required>
+					<option value="664b85011b971c519aea9f2a">Primero</option>
+					<option value="664b851b1b971c519aea9f2d">Segundo</option>
+					<option value="664b85231b971c519aea9f2e">Tercero</option>
+					<option value="664b852b1b971c519aea9f2f">Cuarto</option>
+					<option value="664b85321b971c519aea9f30">Quinto</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Matricular Estudiante</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
